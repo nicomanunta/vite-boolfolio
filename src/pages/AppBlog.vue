@@ -53,11 +53,11 @@ export default {
                 <div class="col-12">
                     <div class="div d-flex justify-content-center my-4">
                         <ul class="pagination">
-                            <li>
-                                <button :class="currentPage == 1 ? 'd-none' : '' " class="btn btn-outline-success btn-square" @click="getProjects(currentPage - 1)">Precedente</button>
+                            <li class="me-1">
+                                <button :class="currentPage == 1 ? 'd-none' : '' " class="bottone" @click="getProjects(currentPage - 1)">Precedente</button>
                             </li>
-                            <li>
-                                <button :class="currentPage == lastPage ? 'd-none' : '' " class="btn btn-outline-success btn-square" @click="getProjects(currentPage + 1)">Successiva</button>
+                            <li class="me-1">
+                                <button :class="currentPage == lastPage ? 'd-none' : '' " class="bottone" @click="getProjects(currentPage + 1)">Successiva</button>
                             </li>
                         </ul>
                     </div>
@@ -66,4 +66,20 @@ export default {
         </div>
     </div>
 </template>
-<style lang="scss"></style>
+<style lang="scss">
+@use "../styles/partials/variables" as *;
+@use "../styles/generals.scss" as *;
+
+.bottone {
+    padding: 12px 20px;
+    background-color: orange;
+    border: 2px solid orange;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: white;
+        color: orange;
+        border: 2px solid orange;
+    }
+}
+</style>
