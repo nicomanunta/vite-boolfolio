@@ -1,6 +1,11 @@
 <script>
+import { store } from "../store.js";
 export default {
-
+    data() {
+        return {
+            store,
+        }
+    },
 }
 </script>
 <template lang="">
@@ -13,8 +18,9 @@ export default {
                 <div class="col-7 d-flex  align-items-center justify-content-end">
                     <nav class="">
                         <ul class="d-flex list-unstyled">
-                            <li class="me-5 nav-item "><a class="text-decoration-none text-dark" href="">Home</a></li>
-                            <li><a class="text-decoration-none text-dark" href="">Blog</a></li>
+                            <li class="me-4 " v-for="item, index in store.menu" :key="index">
+                                <router-link class="text-decoration-none color" :to="{ name: item.name}">{{item.label}}</router-link>
+                            </li>
                         </ul>
                     </nav>
                 </div>  
@@ -28,5 +34,10 @@ export default {
 
 .bg-color {
     background-color: orange;
+
+}
+
+.color {
+    color: black;
 }
 </style>
