@@ -12,18 +12,25 @@ export default {
     data() {
         return {
             store,
-            projects: [
+            projects: [],
+            currentPage: 1,
+            lastPage: null,
 
-            ]
         }
     },
     created() {
         this.getProjects();
     },
     methods: {
-        getProjects() {
-            axios.get(`${this.store.baseUrl}/api/projects`).then((response) => {
+        getProjects(page_number) {
+            axios.get(`${this.store.baseUrl}/api/projects`, {
+                params: {
+                    page: page_number,
+                }
+            }).then((response) => {
                 this.projects = response.data.results.data;
+                this.currentPage = response.data.results.current_page;
+                this.lastPage = response.data.results.last_page;
             })
 
         }
@@ -35,15 +42,25 @@ export default {
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 my-4 text-center ">
                     <h1>Elenco Progetti</h1>
                 </div>
             </div>
             <div class="row">
+                <ProjectCard v-for="project, index in projects" :key="index" :project="project"/>
+            </div>
+            <div class="row">
                 <div class="col-12">
-                    <!-- <ProjectCard v-for="project in projects" :key="project.id" :project="project" /> -->
-                    
-                    <ProjectCard v-for="project, index in projects" :key="index" :project="project"/>
+                    <div class="div d-flex justify-content-center my-4">
+                        <ul class="pagination">
+                            <li>
+                                <button :class="currentPage == 1 ? 'd-none' : '' " class="btn btn-outline-success btn-square" @click="getProjects(currentPage - 1)">Precedente</button>
+                            </li>
+                            <li>
+                                <button :class="currentPage == lastPage ? 'd-none' : '' " class="btn btn-outline-success btn-square" @click="getProjects(currentPage + 1)">Successiva</button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

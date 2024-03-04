@@ -1,28 +1,48 @@
 <script>
+import { store } from "../store.js";
+
 export default {
     name: 'ProjectCard',
     props: {
         project: Object
     },
-
+    data() {
+        return {
+            store,
+        }
+    },
+    methods: {
+        getUrlImage() {
+            let image;
+            if (this.project.cover_immagine != null) {
+                image = '/storage/' + this.project.cover_immagine;
+            }
+            else {
+                image = '/img/immagine.png';
+            }
+            return `${this.store.baseUrl}${image}`;
+        }
+    },
 
 
 }
 </script>
 <template lang="">
-    <div class="col-12">
-        <div class="card" style="width: 18rem;">
-            <!-- <img :src="`${this.store.baseUrl}/storage/${project.cover_immagine}`" class="card-img-top" alt=""> -->
+    <div class="col-3 mt-4">
+
+        <div class="card d-flex" style="width: 18rem;">
+            <img :src="getUrlImage()">
             <div class="card-body">
                 <h5 class="card-title">{{ project.nome_progetto ? project.nome_progetto : 'Nome Progetto non disponibile' }}</h5>
                 <p class="card-text">{{ project.descrizione }}</p>
-                <!-- <span>{{project.type ? $project.type.name : 'Senza tipo'}}</span> -->
+                <span>Tipo: {{project.type ? project.type.name : 'Senza tipo'}}</span>
                 <br>
                 <span>Data: {{ project.data }}</span>
                 <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
             </div>
         </div>
     </div>
+
 </template>
 <style lang="">
     
