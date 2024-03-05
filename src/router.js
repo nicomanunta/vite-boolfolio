@@ -18,6 +18,11 @@ const router = createRouter({
             component: AppBlog
         },
         {
+            path: '/blog/:slug',
+            name: 'single-project',
+            component: SingleProject
+        },
+        {
             path: '/:pathMatch(.*)',
             name: 'not-found',
             component: AppNotFound,
