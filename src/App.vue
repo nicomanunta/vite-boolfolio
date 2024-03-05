@@ -1,5 +1,5 @@
 <script>
-import AppBlog from './pages/AppBlog.vue'
+import AppBlog from './pages/AppBlog.vue';
 import AppHeader from './components/AppHeader.vue'
 export default {
   components: {

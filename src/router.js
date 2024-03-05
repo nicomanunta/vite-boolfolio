@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import AppHome from './pages/AppHome.vue';
 import AppBlog from './pages/AppBlog.vue';
+import SingleProject from './pages/SingleProject.vue';
 import AppNotFound from './pages/AppNotFound.vue';
 
 const router = createRouter({
