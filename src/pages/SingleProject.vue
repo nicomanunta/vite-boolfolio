@@ -18,6 +18,16 @@ export default {
                 this.project =response.data.project;
 
             })
+        },
+        getUrlImage() {
+            let image;
+            if (this.project.cover_immagine != null) {
+                image = '/storage/' + this.project.cover_immagine;
+            }
+            else {
+                image = '/img/immagine.png';
+            }
+            return `${this.store.baseUrl}${image}`;
         }
     },
 }
@@ -26,10 +36,18 @@ export default {
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 my-3">
                     <h1>{{ project.nome_progetto}}</h1>
                 </div>
-                .col-6
+                <div class="col-6">
+                    <img class=" w-100 " :src="getUrlImage()" :alt="project.nome_progetto">
+                </div>
+                <div class="col-6 mt-5">
+                    <p class="card-text">{{ project.descrizione }}</p>
+                    <span>Tipo: {{project.type ? project.type.name : 'Senza tipo'}}</span>
+                    <br>
+                    <span>Data: {{ project.data }}</span>
+                </div>
             </div>
         </div>
     </div> 
