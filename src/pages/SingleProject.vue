@@ -7,18 +7,13 @@ export default {
         return {
             store,
             project: null,
+            success: null,
         }
     },
     created() {
         this.getProjectData();
     },
     methods: {
-        getProjectData(){
-            axios.get(`${this.store.baseUrl}/api/projects/${this.$route.params.slug}`).then((response)=>{
-                this.project =response.data.project;
-
-            })
-        },
         getUrlImage() {
             let image;
             if (this.project.cover_immagine != null) {
@@ -28,14 +23,28 @@ export default {
                 image = '/img/immagine.png';
             }
             return `${this.store.baseUrl}${image}`;
-        }
+        },
+        getProjectData(){
+            axios.get(`${this.store.baseUrl}/api/projects/${this.$route.params.slug}`).then((response)=>{
+                console.log(this.$router);
+                if (response.data.success){
+                    this.project =response.data.project;
+                    this.success =response.data.success;
+                    
+                }
+                else{
+                    this.$router.push({ name: 'not-found' });
+                }
+
+            });
+        },
     },
 }
 </script>
 <template lang="">
     <div>
         <div class="container">
-            <div class="row">
+            <div class="row" v-if=" success == true ">
                 <div class="col-12 my-3">
                     <h1>{{ project.nome_progetto}}</h1>
                 </div>
