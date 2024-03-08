@@ -5,7 +5,7 @@ export default {
         return {
             store,
         }
-    },
+    }, 
 }
 </script>
 <template lang="">
