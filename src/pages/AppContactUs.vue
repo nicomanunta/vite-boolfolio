@@ -1,6 +1,8 @@
 <script>
+import AppContactForm from '../components/AppContactForm.vue';
+
 export default {
-    name: 'AppContactUs'
+    name: 'AppContactUs',
 }
 </script>
 <template lang="">
@@ -25,6 +27,9 @@ export default {
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container">
+        <AppContactForm/>
     </div>
 </template>
 <style lang="">

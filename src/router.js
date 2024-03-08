@@ -24,6 +24,11 @@ const router = createRouter({
             component: SingleProject
         },
         {
+            path: '/contacts',
+            name: 'contact',
+            component: AppContactUs
+        },
+        {
             path: '/:pathMatch(.*)*',
             name: 'not-found',
             component: AppNotFound,
