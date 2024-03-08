@@ -1,11 +1,46 @@
 <script>
+import axios from 'axios';
+import { store } from "../store.js";
+import { Alert } from 'bootstrap';
+
 export default {
-    name: 'AppContactForm'
+    name: 'AppContactForm',
+    data() {
+        return {
+            store,
+            name: '',
+            surname: '',
+            email: '', 
+            phone: '',
+            message: '',
+        }
+    },
+    methods: {
+        sendForm(){
+            const data = {
+                name: this.name,
+                surname: this.surname,
+                email: this.email,
+                phone: this.phone,
+                message: this.message,
+                
+            }
+             axios.post(`${this.store.baseUrl}/api/contacts`, data).then((response)=>{
+                console.log(response);
+                if(response.data.success){
+                    this.$router.push({ name: 'home' });
+                }
+                else{
+                    alert('Email non inviata');
+                }
+             })
+        }
+    },
 }
 </script>
 <template lang="">
     <div>
-        <form action="sendForm()" method="POST">
+        <form @submit.prevent="sendForm()" method="POST">
             <div class="row">
                 <div class="col-6">
                     <label for="name" class="control-label mb-2">Nome</label>
