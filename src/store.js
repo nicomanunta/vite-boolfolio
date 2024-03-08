@@ -11,5 +11,9 @@ export const store = reactive({
             name: 'blog',
             label: 'Blog',
         },
+        {
+            name: 'contacts',
+            label: 'Contatti',
+        },
     ]
 })

@@ -26,7 +26,7 @@ const router = createRouter({
         },
         {
             path: '/contacts',
-            name: 'contact',
+            name: 'contacts',
             component: AppContactUs
         },
         {
